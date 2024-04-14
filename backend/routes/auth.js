@@ -16,18 +16,18 @@ const router = express.Router();
 
 // each arrow function will have a lot of code in it so we will again redirect that functionality to a controller 
 
-router.get('/signup', signup);
+router.post('/signup', signup);
 
 
 
 
-router.get('/login', login);
+router.post('/login', login);
 
 
 
 
 
-router.get('/logout', logout);
+router.post('/logout', logout);
 
 
 
