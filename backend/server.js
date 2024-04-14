@@ -8,20 +8,22 @@ import connectToMongoDB from './db/connectMongoDB.js';
 
 
 const app  = express();
-
-dotenv.config();
 const PORT = process.env.PORT || 5000;
 
 
+dotenv.config();
 
-app.get('/', (req,res)=>{
-    res.send('HEYY THERE !!! ')
-})
+app.use(express.json());                // to get details form POST req body
 
 //  using middleware for auth purpose 
-app.use('/api/auth', authRoutes );              // whenever someone tries to hit anything with '/api/auth' as prefix in route then navigate them to -> authRoutes MW
+// whenever someone tries to hit anything with '/api/auth' as prefix in route then navigate them to -> authRoutes MW
+app.use('/api/auth', authRoutes );              
 
 
+
+// app.get('/', (req,res)=>{
+//     res.send('HEYY THERE !!! ')
+// })
 
 
 
