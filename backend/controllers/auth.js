@@ -2,6 +2,8 @@ import User from "../model/user.js";
 import bcrypt from 'bcryptjs';
 import generateTokenAndSetCookie from "../utils/generateToken.js";
 
+
+
 export const signup = async (req, res) => {
     try {
         const { fullName, userName, password, confirmPassword, gender } = req.body;
@@ -104,6 +106,13 @@ export const login = async (req, res) => {
 
 
 export const logout = (req, res) => {
-    res.send('logout-up user route ')
+    try {
+        // empty up the cookie
+        res.cookie("jwt", "", { maxAge: 0 });
+        res.status(200).json({ message: "Logged out successfully" });
+    } catch (error) {
+        console.log("Error in logout controller", error.message);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
 }
 
