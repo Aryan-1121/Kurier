@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 5000;
 
 dotenv.config();
 
-app.use(express.json());                // to get details form POST req body
+app.use(express.json());                // to get and parse details form POST req body into json 
 
 //  using middleware for auth purpose 
 // whenever someone tries to hit anything with '/api/auth' as prefix in route then navigate them to -> authRoutes MW

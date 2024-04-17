@@ -9,7 +9,7 @@ export const signup = async (req, res) => {
                 error:"Password & confirmPassword didn't match "
             });
         }
-
+        // check if userName already exists (needs to be unique)
         const user = await User.findOne({userName});
         if(user){
             res.status(400).json({
@@ -17,10 +17,40 @@ export const signup = async (req, res) => {
             })
         }
         
+        //     TODO: hash password here 
 
-        res.send('sign-up user route ')
+        // RANDOM PROFILE PIC (using this free api - https://avatar.iran.liara.run/)
+        // for male  -> https://avatar.iran.liara.run/public/boy?username=[value]
+        // for female  -> https://avatar.iran.liara.run/public/girl?username=[value]
+        
+        const maleDP = `https://avatar.iran.liara.run/public/boy?username=${userName}`
+        const femaleDP = `https://avatar.iran.liara.run/public/girl?username=${userName}`
+
+
+        // creating new user to save in DB (MongoDB)
+        const newUser = new User({
+            fullName,
+            userName,
+            password,
+            gender,
+            profilePic: gender=== 'male' ? maleDP : femaleDP  
+        })
+
+        await newUser.save();
+        res.status(201).json({
+            _id: newUser._id,
+            fullName: newUser.fullName,
+            userName: newUser.userName,
+            profilePic: newUser.profilePic
+
+        })
+
+
     } catch (error) {
-        console.log('error while signing up ', error);
+        console.log('error while signing up in signup controller ', error);
+        res.status(500).json({
+            error: 'Internal server error'
+        })
 
     }
 }
