@@ -44,7 +44,7 @@ export const signup = async (req, res) => {
         //  if newUser got created succesfully then save it to database 
         if (newUser) {
             //  TODO: generate JWT token 
-            
+
             generateTokenAndSetCookie(newUser._id, res);
 
             await newUser.save();
@@ -72,8 +72,33 @@ export const signup = async (req, res) => {
 }
 
 
-export const login = (req, res) => {
-    res.send('sign-in user route ')
+export const login = async (req, res) => {
+
+    try {
+        // get the username password from req body 
+        const { userName, password } = req.body;
+        // check if user Exist with that username or not 
+        const user = await User.findOne({ userName });
+        // if user exists then compare hashed pw  from db with the req. body password
+        // if user does not exist we will put password as empty string and that will make  the login fail in next step 
+        const isPasswordCorrect = await bcrypt.compare(password, user?.password || "");
+
+        if (!user || !isPasswordCorrect) {
+            return res.status(400).json({ error: "Invalid username or password" });
+        }
+        // if user is legit then generate token and set it to cookies
+        generateTokenAndSetCookie(user._id, res);
+
+        res.status(200).json({
+            _id: user._id,
+            fullName: user.fullName,
+            username: user.userName,
+            profilePic: user.profilePic,
+        });
+    } catch (error) {
+        console.log("Error during login in loginController", error.message);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
 }
 
 
