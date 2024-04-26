@@ -16,10 +16,9 @@ export const signup = async (req, res) => {
         // check if userName already exists (needs to be unique)
         const user = await User.findOne({ userName });
         if (user) {
-            res.status(400).json({
+            return res.status(400).json({
                 error: 'Username already exist'
             })
-            return;             // otherwise the app will crash 
         }
 
         //     TODO: hash password here 
@@ -59,10 +58,10 @@ export const signup = async (req, res) => {
 
             })
         } else {
-            res.status(400).json({
+            return res.status(400).json({
                 error: 'Invalid user data'
             })
-            return 
+             
         }
 
 
