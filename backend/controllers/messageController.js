@@ -56,5 +56,30 @@ export const sendMessage = async (req, res) => {
 
 
 
+export const getMessages = async (req, res) => {
+	try {
 
+		const { id: userToChatWithId } = req.params;
+		const senderId = req.user._id;					// from previous middleware (protect..)
+
+
+		// we need to find all the conversations between me(senderId) and the user with whome i am chatting with (userToChatWithId) 
+		const conversation = await Conversation.findOne({
+			participants: { $all: [senderId, userToChatWithId] },
+		}).populate("messages"); // poplulate -> will give ACTUAL MESSAGES otherwise we sould be getting reference 
+
+		if (!conversation) 
+			return res.status(200).json([]);
+		// console.log(conversation);
+
+			// we are getting whole object but we only need messages[] field from conversation object
+		const messages = conversation.messages;
+
+		res.status(200).json(messages);
+
+	} catch (error) {
+		console.log("Error in getMessages controller: ", error.message);
+		res.status(500).json({ error: "Internal server error" });
+	}
+}
 
