@@ -19,6 +19,7 @@ export const signup = async (req, res) => {
             res.status(400).json({
                 error: 'Username already exist'
             })
+            return;             // otherwise the app will crash 
         }
 
         //     TODO: hash password here 
@@ -61,6 +62,7 @@ export const signup = async (req, res) => {
             res.status(400).json({
                 error: 'Invalid user data'
             })
+            return 
         }
 
 
