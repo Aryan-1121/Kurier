@@ -3,6 +3,7 @@ import express from 'express'
 import dotenv from 'dotenv'         // to get dotenv configuration 
 import authRoutes from './routes/auth.js'
 import messageRoutes from './routes/messageRoute.js'
+import userRoutes from './routes/userRoutes.js'
 import connectToMongoDB from './db/connectMongoDB.js';
 import cookieParser from 'cookie-parser'
 
@@ -21,6 +22,7 @@ app.use(cookieParser());
 // whenever someone tries to hit anything with '/api/auth' as prefix in route then navigate them to -> authRoutes MW
 app.use('/api/auth', authRoutes );              
 app.use('/api/messages', messageRoutes );              
+app.use('/api/users', userRoutes );              
 
 
 
