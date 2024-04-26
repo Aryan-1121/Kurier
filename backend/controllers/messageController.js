@@ -32,13 +32,14 @@ export const sendMessage = async (req, res) => {
 			conversation.messages.push(newMessage._id);
 		}
 
-		// // await conversation.save();
-		// // await newMessage.save();
+		// await conversation.save();
+		// await newMessage.save();
 
+		// the above approach will take longer as 2nd line will run only after completion of 1st, but we can make it run parallely
 		// // this will run in parallel
-		// await Promise.all([conversation.save(), newMessage.save()]);
+		await Promise.all([conversation.save(), newMessage.save()]);
 
-		// // SOCKET IO FUNCTIONALITY WILL GO HERE
+		// //TODO: add SOCKET IO 
 		// const receiverSocketId = getReceiverSocketId(receiverId);
 		// if (receiverSocketId) {
 		// 	// io.to(<socket_id>).emit() used to send events to specific client
