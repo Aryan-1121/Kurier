@@ -6,7 +6,7 @@ import GenderCheck from './GenderCheck';
 const SignUp = () => {
   return (
     <div className='flex flex-col items-center justify-center min-w-96 mx-auto'>
-      <div className='w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0'>
+      <div className='w-full p-6 rounded-lg shadow-md bg-gray-900 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-60'>
         <h1 className='text-3xl font-semibold text-center text-gray-300'>
           <span className='text-yellow-800'>Sign-Up</span>     <span className='text-orange-500'> Kurier </span>
         </h1>
@@ -61,7 +61,7 @@ const SignUp = () => {
           </a>
 
           <div>
-            <button className='btn btn-block btn-sm mt-2 border border-slate-700'>Sign Up</button>
+            <button className='btn btn-block btn-sm mt-2 border bg-orange-700 text-white input-warning  border-slate-700'>Sign Up</button>
           </div>
         </form>
       </div>
