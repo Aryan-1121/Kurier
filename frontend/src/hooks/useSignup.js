@@ -30,6 +30,14 @@ const useSignup = () => {
       }
       console.log(data)
 
+      // when the data is sent to db we save the data in local storage and we redirect to login page
+
+      // save data in local storage
+
+
+
+      // using context to  
+
     } catch (error) {
       console.log(error)
       toast.error(error.message)
