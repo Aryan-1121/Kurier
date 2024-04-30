@@ -30,8 +30,18 @@ export const signup = async (req, res) => {
         // for male  -> https://avatar.iran.liara.run/public/boy?username=[value]
         // for female  -> https://avatar.iran.liara.run/public/girl?username=[value]
 
-        const maleDP = `https://avatar.iran.liara.run/public/boy?username=${userName}`
-        const femaleDP = `https://avatar.iran.liara.run/public/girl?username=${userName}`
+        // const maleDP = `https://avatar.iran.liara.run/public/boy?username=${userName}`
+        // const femaleDP = `https://avatar.iran.liara.run/public/girl?username=${userName}`
+
+
+
+
+        // change of plans now using "RoboHash" for profile pic 
+        // for male -> some weird alien LOL
+        // for female -> cats
+
+        const maleDP = `https://robohash.org/${userName}?set=set2`;
+        const femaleDP = `https://robohash.org/${userName}?set=set4`;
 
 
         // creating new user to save in DB (MongoDB)

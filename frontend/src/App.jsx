@@ -8,6 +8,7 @@ import { useAuthContext } from "./context/AuthContext"
 
 function App() {
   const { authenticatedUser } = useAuthContext();
+  // when we say authenticatedUser we are saying if user data is present in local storage or not, because if user logs out then we are flushing it and making it empty
 
   return (
    <div className="p-4 h-screen flex items-center justify-center">
