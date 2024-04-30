@@ -9,7 +9,7 @@ const SignUp = () => {
   // we need to use useState for keeping track of Signup data later sending it to backend for authentication/storage
   const [inputs, setInputs] = useState({
     fullName: '',
-    username: '',
+    userName: '',
     password: '',
     confirmPassword: '',
     gender: '',
@@ -54,14 +54,14 @@ const SignUp = () => {
 
           <div>
             <label className='label p-2'>
-              <span className='text-base label-text'>Username</span>
+              <span className='text-base label-text'>UserName</span>
             </label>
             <input
               type='text'
               placeholder='Username'
               className='input input-bordered input-ghost w-full max-w-xs" '
-              value={inputs.username}
-              onChange={(e) => setInputs({ ...inputs, username: e.target.value })}
+              value={inputs.userName}
+              onChange={(e) => setInputs({ ...inputs, userName: e.target.value })}
             />
           </div>
 
