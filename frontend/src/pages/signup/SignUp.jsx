@@ -19,11 +19,10 @@ const SignUp = () => {
   const { loading, signup } = useSignup();
 
   // function to handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();     // to prevent the page from refreshing
-    console.log(inputs);
     // when the form is submitted we send data to backend
-    signup(inputs);
+    await signup(inputs);
   }
 
 
