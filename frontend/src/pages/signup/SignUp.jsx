@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import GenderCheck from './GenderCheck';
 import { Link } from 'react-router-dom';
+import useSignup from '../../hooks/useSignup';
 
 // import GenderCheckbox from "./GenderCheckbox";
 
@@ -14,11 +15,15 @@ const SignUp = () => {
     gender: '',
   })
 
+  // custom hook for saving data to backend
+  const { loading, signup } = useSignup();
 
   // function to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();     // to prevent the page from refreshing
     console.log(inputs);
+    // when the form is submitted we send data to backend
+    signup(inputs);
   }
 
 
