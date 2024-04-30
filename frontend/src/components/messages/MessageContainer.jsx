@@ -6,18 +6,25 @@ import MessageInput from './MessageInput'
 
 const MessageContainer = () => {
   return (
-    <div className='md:min-w-[450px] flex flex-col'>
-      <>
+    <div className='md:min-w-[550px] flex flex-col '>
         {/* 1st ->  Header component */}
-        <div className='bg-slate-500 px-4 py-2 mb-2'>
-          <span className='label-text'>To:</span> <span className='text-gray-900 font-bold'>John doe</span>
+
+      <div className=' px-3 mb-2 bg-zinc-800 flex '>
+        <div className='avatar'>
+          <div className='w-12 rounded-full'>
+            <img
+              src='https://cdn0.iconfinder.com/data/icons/communication-line-10/24/account_profile_user_contact_person_avatar_placeholder-512.png'
+              alt='user avatar'
+            />
+          </div>
+        </div>
+        <div className='px-3  py-5 text-black font-bold'>John doe</div>
         </div>
 
         {/* 2nd -> Messages component */}
         <Messages />
         {/* 3rd -> MessageInput component */}
-        <MessageInput />
-      </>
+      <MessageInput />
     </div>)
 }
 
