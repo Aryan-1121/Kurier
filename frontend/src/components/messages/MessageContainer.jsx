@@ -1,11 +1,24 @@
 import React from 'react'
+import Messages from './Messages'
+import MessageInput from './MessageInput'
 
-// this component will also have 3 other components -> 1. Header (to whom you are messaging) , 2. Messages (each message) , 3. MessageInput
+//  this component will also have 3 other components -> 1. Header (to whom you are messaging) , 2. Messages (each message) , 3. MessageInput
 
 const MessageContainer = () => {
   return (
-    <div>MessageContainer</div>
-  )
+    <div className='md:min-w-[450px] flex flex-col'>
+      <>
+        {/* 1st ->  Header component */}
+        <div className='bg-slate-500 px-4 py-2 mb-2'>
+          <span className='label-text'>To:</span> <span className='text-gray-900 font-bold'>John doe</span>
+        </div>
+
+        {/* 2nd -> Messages component */}
+        <Messages />
+        {/* 3rd -> MessageInput component */}
+        <MessageInput />
+      </>
+    </div>)
 }
 
 export default MessageContainer
