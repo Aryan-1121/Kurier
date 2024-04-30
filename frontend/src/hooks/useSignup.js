@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
 import toast from 'react-hot-toast';
+import { useAuthContext } from '../context/AuthContext';
 
 const useSignup = () => {
   const [loading, setLoading] = useState(false);
+
+  // our custom hook for maintaining authenticated user in a state variable
+  const { authenticatedUser, setAuthenticatedUser } = useAuthContext();
 
   const signup = async ({ fullName, userName, password, confirmPassword, gender }) => {
 
@@ -33,10 +37,13 @@ const useSignup = () => {
       // when the data is sent to db we save the data in local storage and we redirect to login page
 
       // save data in local storage
+      localStorage.setItem('authenticated-chat-user', JSON.stringify(data));
 
 
+      // using authContext to update authenticatedUser in AuthContextProvider so that we can check if user is authenticated/logged in or not throughout the app
+      setAuthenticatedUser(data);
 
-      // using context to  
+
 
     } catch (error) {
       console.log(error)
