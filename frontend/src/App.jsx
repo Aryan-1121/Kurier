@@ -8,7 +8,7 @@ import { useAuthContext } from "./context/AuthContext"
 
 function App() {
   const { authenticatedUser } = useAuthContext();
-  // when we say authenticatedUser we are saying if user data is present in local storage or not, because if user logs out then we are flushing it and making it empty
+  // when we say authenticatedUser we are saying if user data is present in local storage or not, because if user logs out then we are flushing it and making it null in useLogout.js hook
 
   return (
    <div className="p-4 h-screen flex items-center justify-center">
@@ -17,7 +17,7 @@ function App() {
         {/* if user is authenticated then be at home page else redirect to login page */}
         <Route path="/" element={authenticatedUser ? <Home /> : <Login />} />
         {/* if user is authenticated then redirect to home page else redirect to login page */}
-        <Route path="/login" element={authenticatedUser ? <Navigate to='/' /> : <Login />} />
+        <Route path="/login" element={authenticatedUser ? <Navigate to='/' /> : '/'} />
         {/* if user is authenticated then redirect to home page else redirect to signup page */}
         <Route path="/signup" element={authenticatedUser ? <Navigate to='/' /> : <SignUp />} />
 
