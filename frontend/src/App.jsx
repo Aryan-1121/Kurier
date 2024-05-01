@@ -15,7 +15,7 @@ function App() {
 
       <Routes>
         {/* if user is authenticated then be at home page else redirect to login page */}
-        <Route path="/" element={authenticatedUser ? <Home /> : '/login'} />
+        <Route path="/" element={authenticatedUser ? <Home /> : <Navigate to={'/login'} />} />
         {/* if user is authenticated then redirect to home page else redirect to login page */}
         <Route path="/login" element={authenticatedUser ? <Navigate to='/' /> : <Login />} />
         {/* if user is authenticated then redirect to home page else redirect to signup page */}
