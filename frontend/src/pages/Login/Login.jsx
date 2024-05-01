@@ -22,18 +22,16 @@ const Login = () => {
                             className='input input-bordered input-ghost w-full max-w-xs" '
 
                         />
-
-
-
                     </div>
+
 
                     <div>
                         <label className='label p-2'>
-                            <span className='text-base label-text'>Username</span>
+                            <span className='text-base label-text text-gray-400'>Password</span>
                         </label>
                         <input
-                            type='text'
-                            placeholder='Enter username'
+                            type='password'
+                            placeholder='password'
                             className='input input-bordered input-ghost w-full max-w-xs" '
                         />
                     </div>
