@@ -12,9 +12,13 @@ const useLogin = () => {
   const { setAuthenticatedUser } = useAuthContext();
 
   // login function will take username and password, and send it to backend for login authentication, if everything is fine we will set this user in local storage and then update the authenticatedUser state (our AuthContext provider) 
-  const login = async ({ userName, password }) => {
+  const login = async (userName, password) => {
 
-    setLoading = true;
+    //check if both fields are correctly filled or not 
+    const success = handleInputErrors(userName, password);
+    if (!success) return;
+
+    setLoading(true);
     try {
       // send request to backend
       const res = await fetch('/api/auth/login', {
@@ -40,11 +44,31 @@ const useLogin = () => {
       toast.error(error.message);
     }
     finally {
-      setLoading = false;
+      // either log-in is successful or not we set loading to false
+      setLoading(false);
     }
   }
-
+  return { loading, login }
 }
+
+export default useLogin;
+
+
+
+function handleInputErrors(userName, password) {
+  if (!userName || !password) {
+    toast.error("Please fill in all fields");
+    return false;
+  }
+  if (password.length < 6) {
+    toast.error("Password must be at least 6 characters");
+    return false;
+  }
+
+  return true;
+}
+
+
 
 
 
