@@ -2,6 +2,13 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Login = () => {
+    // state variables for username and password
+    const [userName, setUserName] = useState('');
+    const [password, setPassword] = useState('');
+
+    sdsSDDdS
+
+
     return (
         <div className='flex flex-col items-center justify-center min-w-96 mx-auto'>
             <div className='w-full p-6 rounded-lg shadow-md bg-gray-900 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-60'>
@@ -19,7 +26,9 @@ const Login = () => {
                         <input
                             type='text'
                             placeholder='Enter username'
-                            className='input input-bordered input-ghost w-full max-w-xs" '
+                            className='input input-bordered input-ghost w-full max-w-xs'
+                            value={userName}
+                            onChange={(e) => setUserName(e.target.value)}
 
                         />
                     </div>
@@ -32,7 +41,9 @@ const Login = () => {
                         <input
                             type='password'
                             placeholder='password'
-                            className='input input-bordered input-ghost w-full max-w-xs" '
+                            className='input input-bordered input-ghost w-full max-w-xs '
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
 
