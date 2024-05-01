@@ -19,8 +19,9 @@ const useLogout = () => {
       }
       // if logout is successful then remove the user data from local storage and then set authUser to null in AuthContext global state
       localStorage.removeItem("authenticated-chat-user");
-      setAuthUser(null);
+      setAuthenticatedUser(null);
     } catch (error) {
+      console.log(error)
       toast.error(error.message);
     } finally {
       setLoading(false);
