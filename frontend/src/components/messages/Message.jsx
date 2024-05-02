@@ -1,6 +1,7 @@
 import React from 'react'
 import { useAuthContext } from '../../context/AuthContext'
 import { useSideBarConversation } from '../../store/useSideBarConversation';
+import { dateTimeFormatter } from '../../utils/dateTimeFormatter';
 
 // everything in this component will be coming from daisyui
 const Message = ({ message }) => {
@@ -18,6 +19,7 @@ const Message = ({ message }) => {
 
   const chatBgColour = isMessageFromMe ? 'bg-blue-500' : '';
 
+  const formattedTime = dateTimeFormatter(message.createdAt);
 
 
 
@@ -36,7 +38,7 @@ const Message = ({ message }) => {
       {/* "chat-bubble" is used to display the message */}
       <div className={`chat-bubble text-white bg-orange-800 ${chatBgColour} `}>{message.message}</div>
       {/* "chat-footer" -> we are using it to display the time below the message */}
-      <div className='chat-footer opacity-50 text-xs flex gap-1 items-center'>12:54</div>
+      <div className='chat-footer opacity-50 text-xs flex gap-1 items-center'>{formattedTime}</div>
     </div>)
 }
 
