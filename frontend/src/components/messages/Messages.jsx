@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import Message from './Message'
 import { useGetMessages } from '../../hooks/useGetMessages'
 import { useSideBarConversation } from '../../store/useSideBarConversation';
@@ -7,8 +7,16 @@ import { useSideBarConversation } from '../../store/useSideBarConversation';
 const Messages = () => {
 
   const { loading, messages } = useGetMessages();
-  console.log(messages);
+  const latestMessageRef = useRef();
 
+
+  useEffect(() => {
+    setTimeout(()=>{
+
+      latestMessageRef.current?.scrollIntoView()
+    })
+
+  }, [messages])
 
 
   return (
@@ -23,11 +31,13 @@ const Messages = () => {
       {/* if not loading and message array with that particular chat is greater than 0 then send each message from that array  to our Message component to render it (Message Component will take the message as a prop )  */}
       {!loading && messages.length > 0 && (
         messages.map((message) => (
-          <Message key={message._id} message={message} />
+          <div key={message._id} ref={latestMessageRef}>
+            <Message message={message} />
+          </div>
         ))
       )}
 
     </div>)
 }
 
-export default Messages
+export default Messages 
