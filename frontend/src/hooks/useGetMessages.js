@@ -16,8 +16,10 @@ export const useGetMessages = () => {
   // the solution to this is to use useEffect
 
   useEffect(() => {
-    getMessages();
-  }, [selectedConversation._id, setMessages])
+    if (selectedConversation?._id) {
+      getMessages();
+    }
+  }, [selectedConversation?._id, setMessages])
 
 
   const getMessages = async () => {
@@ -43,7 +45,9 @@ export const useGetMessages = () => {
     }
   }
 
-  return { loading, getMessages };
+
+  // this time we won't return a function with loading state, instead we will return the global state which we just updated "messages"
+  return { loading, messages };
 
 
 }

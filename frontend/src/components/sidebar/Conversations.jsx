@@ -5,7 +5,6 @@ import { useGetSideBarConversations } from '../../hooks/useGetSideBarConversatio
 const Conversations = () => {
 
   const { loading, conversations } = useGetSideBarConversations();
-  console.log(conversations);
   return (
     <div className='py-2 flex flex-col overflow-auto'>
 
