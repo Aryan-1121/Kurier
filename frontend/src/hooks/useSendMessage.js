@@ -37,7 +37,7 @@ export const useSendMessage = () => {
     }
   }
 
-
+  return { loading, sendMessage };
 
 
 }
