@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Messages from './Messages'
 import MessageInput from './MessageInput'
 import { TiMessages } from "react-icons/ti";
@@ -11,6 +11,11 @@ const MessageContainer = () => {
   // using our global zustand state to check if a chat is selected or not
 
   const { selectedConversation, setSelectedConversation } = useSideBarConversation();
+
+  // we want to unmount the selectedConversation when the person's log-out (i.e when the setSelectedConversation is changed/called)
+  useEffect(() => {
+    return () => setSelectedConversation(null);
+  }, [setSelectedConversation])
 
   // const noChatSelected = false;
 
