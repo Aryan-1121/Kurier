@@ -9,6 +9,8 @@ const MessageInput = () => {
 
   const handleMessageSubmit = async (e) => {
     e.preventDefault();     // to prevent the page from refreshing
+    if (!message) return;
+
     // now when the user clck on send message icon we will call the sendMessage function from useSendMessage hook
     sendMessage(message);
     // after sending the message we will clear the input field
