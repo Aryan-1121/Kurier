@@ -11,7 +11,7 @@ const Conversation = ({conversation}) => {
 
 
   return <>
-    <div className={`flex gap-2 items-center ${isSelected ? 'hover:bg-yellow-600' : 'hover:bg-zinc-700'}  rounded p-2 py-1 cursor-pointer ${isSelected ? 'bg-yellow-700' : ''}`}
+    <div className={`flex gap-2 items-center ${isSelected ? 'hover:bg-yellow-600' : 'hover:bg-zinc-700'}  rounded p-1 py-[8px]  cursor-pointer ${isSelected ? 'bg-yellow-700' : ''}`}
       onClick={() => setSelectedConversation(conversation)}
     >
       <div className='avatar online'>

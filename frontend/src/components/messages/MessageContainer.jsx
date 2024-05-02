@@ -2,38 +2,50 @@ import React from 'react'
 import Messages from './Messages'
 import MessageInput from './MessageInput'
 import { TiMessages } from "react-icons/ti";
+import { useSideBarConversation } from '../../store/useSideBarConversation';
 
 //  this component will also have 3 other components -> 1. Header (to whom you are messaging) , 2. Messages (each message) , 3. MessageInput
 
 const MessageContainer = () => {
-  const noChatSelected = true;
+
+  // using our global zustand state to check if a chat is selected or not
+
+  const { selectedConversation, setSelectedConversation } = useSideBarConversation();
+
+  // const noChatSelected = false;
 
   return (
-    <div className='md:w-[550px] lg:w-[750px] xl:w[850px] flex flex-col '>
+    <div className=' md:w-[550px] lg:w-[750px] xl:w[850px] flex flex-col '>
       {/* 1st ->  Header component */}
 
-      {noChatSelected ? <NoChatSelected /> : (<div className=' px-3 mb-2 bg-zinc-800 flex '>
-        {/* avatar/profile picture */}
-        <div className='avatar'>
-          <div className='w-12 rounded-full'>
-            <img
-              src='https://cdn0.iconfinder.com/data/icons/communication-line-10/24/account_profile_user_contact_person_avatar_placeholder-512.png'
-              alt='user avatar'
-            />
-          </div>
-        </div>
+      {!selectedConversation ? (
+        <NoChatSelected />
+      ) : (
+        <>
+          <div className=' px-3 mb-2 bg-zinc-800 flex '>
+            {/* avatar/profile picture */}
+            <div className='avatar pt-2'>
+              <div className='max-h-12 rounded-full '>
+                <img
+                  src={selectedConversation.profilePic}
+                  alt='user avatar'
+                />
+              </div>
+            </div>
 
-        {/* name */}
-        <div className='px-3  py-5 text-black font-bold'>John doe</div>
+              {/* name */}
+              <div className='px-3  py-5  font-bold '>{selectedConversation.fullName}</div>
+            </div>
 
-        {/* 2nd -> Messages component */}
-        <Messages />
+
+            {/* 2nd -> Messages component */}
+            <Messages />
         {/* 3rd -> MessageInput component */}
-        <MessageInput />
-
-      </div>)
+            <MessageInput />
+          </>
+        )
       }
-      
+
     </div>)
 }
 
