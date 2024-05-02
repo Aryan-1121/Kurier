@@ -1,6 +1,14 @@
 import React from 'react'
+import { useSideBarConversation } from '../../store/useSideBarConversation'
 
 const Conversation = ({conversation}) => {
+
+  const { selectedConversation, setSelectedConversation } = useSideBarConversation();
+
+  
+
+
+
   return <>
     <div className='flex gap-2 items-center hover:bg-yellow-700 rounded p-2 py-1 cursor-pointer'>
       <div className='avatar online'>

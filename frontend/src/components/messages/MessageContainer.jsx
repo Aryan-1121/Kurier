@@ -6,7 +6,7 @@ import { TiMessages } from "react-icons/ti";
 //  this component will also have 3 other components -> 1. Header (to whom you are messaging) , 2. Messages (each message) , 3. MessageInput
 
 const MessageContainer = () => {
-  const noChatSelected = false;
+  const noChatSelected = true;
 
   return (
     <div className='md:w-[550px] lg:w-[750px] xl:w[850px] flex flex-col '>
@@ -26,13 +26,13 @@ const MessageContainer = () => {
         {/* name */}
         <div className='px-3  py-5 text-black font-bold'>John doe</div>
 
+        {/* 2nd -> Messages component */}
+        <Messages />
+        {/* 3rd -> MessageInput component */}
+        <MessageInput />
+
       </div>)
       }
-
-      {/* 2nd -> Messages component */}
-      <Messages />
-      {/* 3rd -> MessageInput component */}
-      <MessageInput />
       
     </div>)
 }
