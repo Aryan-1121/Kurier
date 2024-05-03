@@ -3,6 +3,7 @@ import Messages from './Messages'
 import MessageInput from './MessageInput'
 import { TiMessages } from "react-icons/ti";
 import { useSideBarConversation } from '../../store/useSideBarConversation';
+import { useAuthContext } from '../../context/AuthContext';
 
 //  this component will also have 3 other components -> 1. Header (to whom you are messaging) , 2. Messages (each message) , 3. MessageInput
 
@@ -59,11 +60,11 @@ export default MessageContainer
 
 
 const NoChatSelected = () => {
-  // const { authUser } = useAuthContext();
+  const { authenticatedUser } = useAuthContext;
   return (
     <div className='flex items-center justify-center w-full h-full'>
       <div className='px-4 text-center sm:text-lg md:text-xl text-gray-200 font-semibold flex flex-col items-center gap-2'>
-        <p>Welcome 👋 Heroo ❄</p>
+        <p>Welcome 👋 {authenticatedUser.fullName} ❄</p>
         <p>Select a chat to start messaging</p>
         <TiMessages className='text-3xl md:text-6xl text-center' />
       </div>
