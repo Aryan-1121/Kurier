@@ -1,15 +1,17 @@
 // const express = require('express')
-import express from 'express'
+// import express from 'express'
 import dotenv from 'dotenv'         // to get dotenv configuration 
 import authRoutes from './routes/auth.js'
 import messageRoutes from './routes/messageRoute.js'
 import userRoutes from './routes/userRoutes.js'
 import connectToMongoDB from './db/connectMongoDB.js';
 import cookieParser from 'cookie-parser'
+import { app } from './socket/socket.js';
 
 
 
-const app  = express();
+// instead of using object of express here we will get it from socket.js file where we wrap it with socket server 
+
 const PORT = process.env.PORT || 5000;
 
 
