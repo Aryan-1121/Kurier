@@ -15,6 +15,17 @@ const io = new Server(server, {
   }
 });
 
+
+// now for chats to be real-time too, we need to make use of socket ->we will get userId from FE and find its socketId in userToSocketMap and return that socketId 
+
+export const getReceiverSocketId = (receiverUserId) => {
+  return userSocketMap[receiverUserId];
+}
+
+
+
+
+
 // const userToSocketMap = new Map();
 const userSocketMap = {}; // {userId: socketId}
 
