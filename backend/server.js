@@ -6,7 +6,7 @@ import messageRoutes from './routes/messageRoute.js'
 import userRoutes from './routes/userRoutes.js'
 import connectToMongoDB from './db/connectMongoDB.js';
 import cookieParser from 'cookie-parser'
-import { app } from './socket/socket.js';
+import { app, server } from './socket/socket.js';
 
 
 
@@ -33,9 +33,9 @@ app.use('/api/users', userRoutes );
 // })
 
 
+// instead of listening with express server we will listen with socket server
 
-
-app.listen(PORT, () =>{
+server.listen(PORT, () => {
     connectToMongoDB();
     console.log(`app listening to port ${PORT}`);
 })
