@@ -3,6 +3,9 @@ import { useSideBarConversation } from '../../store/useSideBarConversation'
 
 const Conversation = ({conversation}) => {
 
+  const { onlineUsers } = useSocketContext();
+  const isOnline = onlineUsers.includes(conversation._id);
+
   const { selectedConversation, setSelectedConversation } = useSideBarConversation();
 
   // checking if selected/clicked conversation(sideBar conversation) is same as this conversation(the one conversation out of array of conversations which we are getting from parent component)
@@ -14,7 +17,7 @@ const Conversation = ({conversation}) => {
     <div className={`flex gap-2 items-center ${isSelected ? 'hover:bg-yellow-600' : 'hover:bg-zinc-700'}  rounded p-1 py-[8px]  cursor-pointer ${isSelected ? 'bg-yellow-700' : ''}`}
       onClick={() => setSelectedConversation(conversation)}
     >
-      <div className='avatar online'>
+      <div className={`avatar ${isOnline ? 'online' : ''}`}>
         <div className='w-12 rounded-full'>
           <img
             src={conversation.profilePic}

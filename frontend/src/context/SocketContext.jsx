@@ -28,6 +28,11 @@ export const SocketContextProvider = ({ children }) => {
       })
       setSocket(newSocket);
 
+      socket.on('getOnlineUsers', (users) => {
+        setOnlineUsers(users);
+      })
+
+
       // the hook also returns a cleanup function that closes the socket when the component unmounts or the authenticatedUser changes.
 
       // The socket.close() ensures that the socket connection is properly closed to prevent any potential memory leaks or unintended behavior.
