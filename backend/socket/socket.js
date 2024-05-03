@@ -10,7 +10,7 @@ const server = http.createServer(app);      // for socket io we need http server
 // io might get cors error while connecting to frontend so we give cors option
 const io = new Server(server, {
   cors: {
-    origin: ['http://localhost:5173'],
+    origin: ['http://localhost:5173', 'https://kurier-msh1.onrender.com'],
     methods: ['GET', 'POST']
   }
 });
