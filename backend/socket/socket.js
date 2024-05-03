@@ -1,4 +1,3 @@
-import { Socket } from 'dgram';
 import express from 'express'
 import http from 'http'       // node module 
 import { Server } from 'socket.io'
@@ -16,6 +15,9 @@ const io = new Server(server, {
   }
 });
 
+// const userToSocketMap = new Map();
+const userSocketMap = {}; // {userId: socketId}
+
 // listening to connection 
 
 // The io.on('connection', ...) function is an event listener that is triggered whenever a new client connects to the server
@@ -23,9 +25,21 @@ const io = new Server(server, {
 // This ID can be used to identify and interact with specific clients in the server-side code.
 io.on('connection', (socket) => {
   // here socket is a new client/user
-  console.log("socket -> ", socket)
+  // console.log("socket -> ", socket)
   console.log(`User connected: ${socket.id}`);
 
+  // getting userId from FE (query) and then saving it in userToSocketMap
+  const userId = socket.handshake.query.userId;
+  if (userId != "undefined") {
+    // userToSocketMap.set(userId, socket.id);
+    userSocketMap[userId] = socket.id;
+  }
+
+
+  // whenever the userToSocketMap changes, we will broadcast/emit it to all connected clients
+  // io.emit is used to emit an event to all connected clients
+  // io.emit('getOnlineUsers', userToSocketMap.keys());
+  io.emit('getOnlineUsers', Object.keys(userSocketMap));
 
 
   // The socket.on(...) function is an event listener that is triggered whenever a new client sends data to the server
@@ -34,15 +48,12 @@ io.on('connection', (socket) => {
   // this is to monitor other users online status, ( whenever there a user is/goes offline an event will be triggered)  
   socket.on('disconnect', () => {
     console.log(`User disconnected: ${socket.id}`);
+    // userToSocketMap.delete(socket.id);
+    delete userSocketMap[userId];
+    io.emit('getOnlineUsers', Object.keys(userSocketMap));
+
   })
-
-
 })
-
-
-
-
-
 
 
 

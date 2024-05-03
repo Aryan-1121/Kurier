@@ -1,5 +1,5 @@
 // const express = require('express')
-// import express from 'express'
+import express from 'express'
 import dotenv from 'dotenv'         // to get dotenv configuration 
 import authRoutes from './routes/auth.js'
 import messageRoutes from './routes/messageRoute.js'
@@ -33,7 +33,7 @@ app.use('/api/users', userRoutes );
 // })
 
 
-// instead of listening with express server we will listen with socket server
+// instead of listening with express  server app will listen with socket server
 
 server.listen(PORT, () => {
     connectToMongoDB();
