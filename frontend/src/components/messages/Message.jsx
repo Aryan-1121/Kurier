@@ -17,7 +17,7 @@ const Message = ({ message }) => {
 
   const chatProfilePic = isMessageFromMe ? authenticatedUser.profilePic : selectedConversation.profilePic;
 
-  const chatBgColour = isMessageFromMe ? 'bg-blue-500' : '';
+  const chatBgColour = isMessageFromMe ? 'bg-blue-500' : 'bg-orange-800';
 
   const formattedTime = dateTimeFormatter(message.createdAt);
 
@@ -36,7 +36,7 @@ const Message = ({ message }) => {
       </div>
 
       {/* "chat-bubble" is used to display the message */}
-      <div className={`chat-bubble text-white bg-orange-800 ${chatBgColour} `}>{message.message}</div>
+      <div className={`chat-bubble text-white  ${chatBgColour} `}>{message.message}</div>
       {/* "chat-footer" -> we are using it to display the time below the message */}
       <div className='chat-footer opacity-50 text-xs flex gap-1 items-center'>{formattedTime}</div>
     </div>)
