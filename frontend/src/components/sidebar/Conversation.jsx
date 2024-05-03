@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSideBarConversation } from '../../store/useSideBarConversation'
+import { useSocketContext } from '../../context/SocketContext';
 
 const Conversation = ({conversation}) => {
 

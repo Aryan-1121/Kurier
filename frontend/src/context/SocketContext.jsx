@@ -21,12 +21,12 @@ export const SocketContextProvider = ({ children }) => {
   useEffect(() => {
     if (authenticatedUser) {
       // we will pass authenticatedUser._id as a query parameter in the socket connection which we will catch in BE and map it against each socketId 
-      const newSocket = io('http://localhost:5000', {
+      const socket = io('http://localhost:5000', {
         query: {
           userId: authenticatedUser._id
         }
       })
-      setSocket(newSocket);
+      setSocket(socket);
 
       socket.on('getOnlineUsers', (users) => {
         setOnlineUsers(users);
