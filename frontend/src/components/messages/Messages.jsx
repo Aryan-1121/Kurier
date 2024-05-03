@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import Message from './Message'
 import { useGetMessages } from '../../hooks/useGetMessages'
-import { useSideBarConversation } from '../../store/useSideBarConversation';
+import { useListenSocketMessages } from '../../hooks/useListenSocketMessages';
 
 //  This component will be used to display all the messages (each message will be a seperate Message component)
 const Messages = () => {
@@ -9,6 +9,7 @@ const Messages = () => {
   const { loading, messages } = useGetMessages();
   const latestMessageRef = useRef();
 
+  useListenSocketMessages();
 
   useEffect(() => {
     setTimeout(()=>{
