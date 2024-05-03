@@ -12,6 +12,12 @@ export const useSocketContext = () => {
 
 export const SocketContextProvider = ({ children }) => {
 
+
+  const nodeEnv = process.env.NODE_ENV;
+  const socketServerUrl = nodeEnv == 'development' ? 'http://localhost:5000' : 'https://kurier-msh1.onrender.com';
+
+
+
   const [socket, setSocket] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
   const { authenticatedUser } = useAuthContext();
@@ -21,7 +27,7 @@ export const SocketContextProvider = ({ children }) => {
   useEffect(() => {
     if (authenticatedUser) {
       // we will pass authenticatedUser._id as a query parameter in the socket connection which we will catch in BE and map it against each socketId 
-      const socket = io('http://localhost:5000', {
+      const socket = io(socketServerUrl, {
         query: {
           userId: authenticatedUser._id
         }
