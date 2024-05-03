@@ -4,13 +4,16 @@ import { Server } from 'socket.io'
 
 const app = express();
 
+const nodeEnv = process.env.NODE_ENV;
+const socketServerUrl = nodeEnv == 'development' ? 'http://localhost:5173' : 'https://kurier-msh1.onrender.com';
+
 const server = http.createServer(app);      // for socket io we need http server so we are creating it with our express app
 
 // here io is a socket server
 // io might get cors error while connecting to frontend so we give cors option
 const io = new Server(server, {
   cors: {
-    origin: ['http://localhost:5173', 'https://kurier-msh1.onrender.com'],
+    origin: [socketServerUrl],
     methods: ['GET', 'POST']
   }
 });
