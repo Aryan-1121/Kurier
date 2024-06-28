@@ -35,7 +35,7 @@ const SignUp = () => {
   return (
     <div className='flex flex-col items-center justify-center min-w-96 mx-auto'>
       <div className='w-full p-6 rounded-lg shadow-md bg-gray-700 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-60'>
-        <span className='text-white text-lg' >Use any Random username/pw combination</span>
+        <span className='text-white text-lg' >Use Random/Fake Username/PW combination</span>
       </div>
       <div className='w-full p-6 rounded-lg shadow-md bg-gray-900 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-60'>
         <h1 className='text-3xl font-semibold text-center text-gray-300'>
