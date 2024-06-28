@@ -8,7 +8,7 @@ const generateTokenAndSetCookie = (userId, res) => {
 	});
     // token created (signed from our secret) , now setting it to cookie
 	res.cookie("jwt", token, {
-		maxAge: 15 * 24 * 60 * 60 * 1000, // MS  (-> 15 days)
+		maxAge: 15 * 24 * 60 * 60 * 1000, // milli second  (-> 15 days)
 		httpOnly: true, // to prevent XSS attacks cross-site scripting attacks(javascript)
 		sameSite: "strict", // CSRF attacks cross-site request forgery attacks
         secure: process.env.NODE_ENV !== "development",
